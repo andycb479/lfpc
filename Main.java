@@ -11,6 +11,8 @@ package com.LFPC.Lab1;
 //        6. C-aA
 //        7. A-b }
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 class Value{
     public String Terminal;
@@ -29,7 +31,7 @@ class Value{
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         String regularGrammar = "VN={S, A, B, C}, VT={a, b, c, d},\n" +
                 "P={\n" +
@@ -41,6 +43,8 @@ public class Main {
                 "6. C-aA\n" +
                 "7. A-b }";
         HashMap<String, Value[]> hmap = grammarToHash(regularGrammar);
+
+        createGUI(hmap);
 
         String input = "dabaabcd";//dabcd,dabaad,dabaabcd
         String NonTerminal = "S";
@@ -109,5 +113,24 @@ public class Main {
             }
 
             return hmap;
+     }
+     static void createGUI(HashMap<String, Value[]> hmap) throws IOException {
+
+         FileWriter myWriter = new FileWriter("graph.dot");
+
+         String graph = "digraph finite_state_machine {\n" +
+                 "    rankdir=LR;\n" +
+                 "    size=\"8,5\"\n" +
+                 "    node [shape = circle];\n";
+
+         for (String key: hmap.keySet()){
+             for (Value value: hmap.get(key)) {
+                 graph+= key+ " -> "+ (value.NonTerminal.equals("$")? "Empty" : value.NonTerminal)+"[ label = \""+value.Terminal+"\" ];\n";
+             }
+         }
+         graph+="}";
+         myWriter.write(graph);
+         myWriter.close();
+
      }
 }
