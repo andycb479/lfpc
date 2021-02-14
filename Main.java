@@ -46,7 +46,7 @@ public class Main {
 
         createGUI(hmap);
 
-        String input = "dabaabcd";//dabcd,dabaad,dabaabcd
+        String input = "dad";//dabcd,dabaad,dabaabcd
         String NonTerminal = "S";
 
         for (int i = 0; i < input.length(); i++) {
@@ -92,22 +92,12 @@ public class Main {
                     for (int j = 0; j < len; j++) {
                         temp[j] = hmap.get(productions[i].charAt(0)+"")[j];
                     }
-                    if(productions[i].length()==4){
-                        temp[len] = new Value(productions[i].charAt(2)+"",productions[i].charAt(3)+"");
-                    }
-                    else if(productions[i].length()==3){
-                        temp[len] = new Value(productions[i].charAt(2)+"","$");
-                    }
+
+                    temp[len] = new Value(productions[i].charAt(2)+"", productions[i].length()==4?productions[i].charAt(3)+"":"$" );
                     hmap.put(productions[i].charAt(0)+"",temp);
                 }
                 else{
-                    if(productions[i].length()==4){
-                        hmap.put(productions[i].charAt(0)+"", new Value[]{new Value(productions[i].charAt(2)+"",productions[i].charAt(3)+"")});
-
-                    }
-                    else if(productions[i].length()==3){
-                        hmap.put(productions[i].charAt(0)+"", new Value[]{new Value(productions[i].charAt(2)+"","$")});
-                    }
+                    hmap.put(productions[i].charAt(0)+"", new Value[]{new Value(productions[i].charAt(2)+"",productions[i].length()==4?productions[i].charAt(3)+"":"$")});
                 }
 
             }
