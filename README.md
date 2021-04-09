@@ -7,3 +7,6 @@
 ### 1. Java program for converting from NFA to DFA
 ### 2. Graph visualisation generated in the DOT language.
 ### 3. Input check.
+## Lab 3 - Chomsky Normal Form
+### 1. Python program for converting a context free grammar to Chomsky Normal Form
+
