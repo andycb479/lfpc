@@ -9,4 +9,5 @@
 ### 3. Input check.
 ## Lab 3 - Chomsky Normal Form
 ### 1. Python program for converting a context free grammar to Chomsky Normal Form
+### 2. From Chomsky Normal Form to Greibach Form Conversion beta
 
